@@ -34,7 +34,7 @@
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
 		<queryString language="SQL">
-			<![CDATA[select * from  saw_kinerja_karyawan_biznet.employees]]>
+			<![CDATA[select * from  profile_matching_karyawan.employees]]>
 		</queryString>
 		<field name="id" class="java.lang.Integer">
 			<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -46,15 +46,25 @@
 			<property name="com.jaspersoft.studio.field.label" value="name"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
 		</field>
-		<field name="position" class="java.lang.String">
-			<property name="com.jaspersoft.studio.field.name" value="position"/>
-			<property name="com.jaspersoft.studio.field.label" value="position"/>
+		<field name="address" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="address"/>
+			<property name="com.jaspersoft.studio.field.label" value="address"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+		</field>
+		<field name="contact_number" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="contact_number"/>
+			<property name="com.jaspersoft.studio.field.label" value="contact_number"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+		</field>
+		<field name="last_education" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="last_education"/>
+			<property name="com.jaspersoft.studio.field.label" value="last_education"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
 		</field>
 	</subDataset>
 	<parameter name="PATH" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  saw_kinerja_karyawan_biznet.employees limit 1]]>
+		<![CDATA[select * from  profile_matching_karyawan.employees limit 1]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -66,9 +76,19 @@
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
 	</field>
-	<field name="position" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="position"/>
-		<property name="com.jaspersoft.studio.field.label" value="position"/>
+	<field name="address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+	</field>
+	<field name="contact_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="contact_number"/>
+		<property name="com.jaspersoft.studio.field.label" value="contact_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+	</field>
+	<field name="last_education" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="last_education"/>
+		<property name="com.jaspersoft.studio.field.label" value="last_education"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
 	</field>
 	<background>
@@ -77,7 +97,7 @@
 	<pageHeader>
 		<band height="80" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-30" width="595" height="110" forecolor="#FFFCFC" backcolor="#FFFFFF" uuid="8614d487-da76-43bf-a37d-a0c7d8e4b983"/>
+				<reportElement mode="Opaque" x="-20" y="-30" width="595" height="110" forecolor="#FFFCFC" backcolor="#FFFFFF" uuid="d7deba61-216a-4172-9ca6-9ae73b3d9ce5"/>
 				<box padding="0">
 					<pen lineColor="#000000"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -86,27 +106,27 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<staticText>
-					<reportElement x="100" y="21" width="430" height="30" forecolor="#000000" uuid="6daf5aa3-6e90-4aab-aaca-ffac3ce923a5"/>
+					<reportElement x="100" y="21" width="430" height="30" forecolor="#000000" uuid="03ebd9d7-519f-4f4e-a833-6099a495544b"/>
 					<textElement textAlignment="Center">
 						<font fontName="Times New Roman" size="20" isBold="true"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
-					<text><![CDATA[ PT SUPRA PRIMATAMA NUSANTARA]]></text>
+					<text><![CDATA[BHUMI INTI GUNA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="180" y="51" width="260" height="20" forecolor="#000000" uuid="032d289b-bd98-4bc9-91e9-e8c4f05b6c90"/>
+					<reportElement x="200" y="51" width="230" height="20" forecolor="#000000" uuid="28a25322-3754-4b3e-904e-49205ed43952"/>
 					<textElement>
 						<font fontName="Times New Roman"/>
 					</textElement>
-					<text><![CDATA[Jl. Riverside Golf Club No.1, Bojong Nangka, Kec. Gn. Putri]]></text>
+					<text><![CDATA[Jalan Ampera Raya No.2 , Ragunan, kec. Pasar Minggu]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="220" y="71" width="180" height="20" forecolor="#000000" uuid="3e5fb385-5509-455e-9661-5a09670aeb3e"/>
-					<text><![CDATA[Kabupaten Bogor, Jawa Barat 16965]]></text>
+					<reportElement x="210" y="72" width="210" height="20" forecolor="#000000" uuid="297b26e5-c754-45f1-9343-dda37c381e71"/>
+					<text><![CDATA[Kota Jakarta selatan, Daerah Ibukota Jakarta.]]></text>
 				</staticText>
 				<image>
 					<reportElement x="40" y="25" width="50" height="50" uuid="23d5bb3f-e081-4190-9f1d-1a95495589ee"/>
-                                        <imageExpression><![CDATA[$P{PATH}+"logo_PT_Supra_Primatama_Nusantara-200.png"]]></imageExpression>
+                                        <imageExpression><![CDATA[$P{PATH}+"big-200.png"]]></imageExpression>
 				</image>
 			</frame>
 		</band>
@@ -125,23 +145,23 @@
 	<detail>
 		<band height="252" splitType="Stretch">
 			<componentElement>
-				<reportElement x="-9" y="10" width="570" height="200" uuid="6d349f82-cd3a-42e8-beb1-f8e844d4f100">
+				<reportElement x="-9" y="10" width="569" height="200" uuid="6d349f82-cd3a-42e8-beb1-f8e844d4f100">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
-					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
 					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Peserta" uuid="dd249c7e-ad96-43d0-af83-082eaac13d5c">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="286" uuid="2727b463-ab3d-4641-8439-cbd1cdccfc99">
+					<jr:column width="128" uuid="2727b463-ab3d-4641-8439-cbd1cdccfc99">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="286" height="30" uuid="5562cc5f-8c8e-443b-9d62-90ff51252d75">
+								<reportElement x="0" y="0" width="128" height="30" uuid="5562cc5f-8c8e-443b-9d62-90ff51252d75">
 									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center">
@@ -152,7 +172,7 @@
 						</jr:tableHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="286" height="30" uuid="0987176e-4833-4436-852a-fbe36e75d1c9">
+								<reportElement x="0" y="0" width="128" height="30" uuid="0987176e-4833-4436-852a-fbe36e75d1c9">
 									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center">
@@ -162,28 +182,78 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="284" uuid="0b21e6f8-7652-4acc-b435-c1c228b1873b">
+					<jr:column width="156" uuid="0b21e6f8-7652-4acc-b435-c1c228b1873b">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="284" height="30" uuid="8c77f3c0-d41f-4868-a2a2-1c31ae5a22a2">
+								<reportElement x="0" y="0" width="156" height="30" uuid="8c77f3c0-d41f-4868-a2a2-1c31ae5a22a2">
 									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center">
 									<paragraph spacingBefore="10"/>
 								</textElement>
-								<text><![CDATA[JABATAN]]></text>
+								<text><![CDATA[KONTAK]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="284" height="30" uuid="e40bd1be-f9e2-4807-be67-d6a678544292">
+								<reportElement x="0" y="0" width="156" height="30" uuid="e40bd1be-f9e2-4807-be67-d6a678544292">
 									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center">
 									<paragraph spacingBefore="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{position}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{contact_number}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="167" uuid="605ab9a5-4c99-41f6-bfd1-f91e45fbe52c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="167" height="30" uuid="b281f2f4-c84c-453b-9e97-ccc7a6916402">
+									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<paragraph spacingBefore="10"/>
+								</textElement>
+								<text><![CDATA[ALAMAT]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="167" height="30" uuid="4bf0e33b-3af7-4765-8fd4-3b504ed34000">
+									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<paragraph spacingBefore="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="118" uuid="525e8783-5db3-473d-b95d-ef92caab1bba">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="118" height="30" uuid="94bc8b8c-4f44-49df-bb79-b8ee9a8b088e">
+									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<paragraph spacingBefore="10"/>
+								</textElement>
+								<text><![CDATA[P.TERAKHIR]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="118" height="30" uuid="206f3969-4f50-4c94-8c04-afa95ba489d6">
+									<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<paragraph spacingBefore="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{last_education}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -220,7 +290,7 @@
 				<textElement textAlignment="Right">
 					<paragraph rightIndent="10"/>
 				</textElement>
-				<text><![CDATA[Indah]]></text>
+				<text><![CDATA[ Noviska]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

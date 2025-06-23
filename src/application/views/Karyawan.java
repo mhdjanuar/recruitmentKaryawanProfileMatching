@@ -61,7 +61,7 @@ import net.sf.jasperreports.view.JasperViewer;
             // Set Model untuk JTable
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(new Object[]{
-                "ID Karyawan", "Nama", "Jabatan",
+                "ID Karyawan", "Nama", "Kontak", "Alamat", "Pendidikan Terakhir"
             });
 
             // Masukkan data karyawan ke dalam model JTable
@@ -69,7 +69,9 @@ import net.sf.jasperreports.view.JasperViewer;
                 model.addRow(new Object[]{
                     karyawan.getId(),
                     karyawan.getName(),
-                    karyawan.getJabatan()
+                    karyawan.getKontak(),
+                    karyawan.getAlamat(),
+                    karyawan.getLastEducation()
                 });
             }
 
@@ -96,13 +98,17 @@ import net.sf.jasperreports.view.JasperViewer;
 
                 // Ambil data dari baris yang diklik
                 String nama = jTable1.getValueAt(selectedRow, 1).toString();
-                String jabatan = jTable1.getValueAt(selectedRow, 2).toString();
+                String kontak = jTable1.getValueAt(selectedRow, 2).toString();
+                String alamat = jTable1.getValueAt(selectedRow, 3).toString();
+                String lastEducation = jTable1.getValueAt(selectedRow, 4).toString();
                 
                 this.selectedId = jTable1.getValueAt(selectedRow, 0).toString();
 
                 // Tampilkan ke form
                 txtNama.setText(nama);
-                txtJabatan.setText(jabatan);
+                txtKontak.setText(kontak);
+                txtAlamat.setText(alamat);
+                txtLastEducation.setText(lastEducation);
             }
         });
 
@@ -111,8 +117,9 @@ import net.sf.jasperreports.view.JasperViewer;
     public void clearForm() {
         // Clear all the text fields
         txtNama.setText("");  // Menghapus teks di text field Nama
-        txtJabatan.setText("");  // Menghapus teks di text field Usia
-
+        txtKontak.setText("");  // Menghapus teks di text field Usia
+        txtAlamat.setText("");
+        txtLastEducation.setText("");
 
         // Log untuk memastikan form di-clear
         System.out.println("Form berhasil dibersihkan.");
@@ -133,16 +140,19 @@ import net.sf.jasperreports.view.JasperViewer;
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
-        txtJabatan = new javax.swing.JTextField();
+        txtKontak = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        txtAlamat = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtLastEducation = new javax.swing.JTextField();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -157,7 +167,13 @@ import net.sf.jasperreports.view.JasperViewer;
 
         jLabel1.setText("Masukan Nama");
 
-        jLabel2.setText("Jabatan");
+        txtKontak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKontakActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Kontak");
 
         jButton1.setText("SIMPAN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -190,58 +206,6 @@ import net.sf.jasperreports.view.JasperViewer;
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("FORM KANDIDAT KARYAWAN");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(txtJabatan)
-                                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -255,21 +219,80 @@ import net.sf.jasperreports.view.JasperViewer;
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jLabel4.setText("Alamat");
+
+        jLabel5.setText("Pendidikan Terakhir");
+
+        txtLastEducation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastEducationActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(txtKontak)
+                            .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addComponent(jLabel4)
+                            .addComponent(txtAlamat)
+                            .addComponent(jLabel5)
+                            .addComponent(txtLastEducation))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtKontak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtLastEducation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -278,26 +301,24 @@ import net.sf.jasperreports.view.JasperViewer;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Ambil nilai input dari form
         String nama = txtNama.getText().trim();
-        String jabatan = txtJabatan.getText().trim();
+        String kontak = txtKontak.getText().trim();
+        String alamat = txtAlamat.getText().trim();
+        String lastEducation = txtLastEducation.getText().trim();
 
         // Log input yang diterima
         System.out.println("Nama: " + nama);
@@ -306,7 +327,9 @@ import net.sf.jasperreports.view.JasperViewer;
         // Set ke model
         KaryawanModel karyawan = new KaryawanModel();
         karyawan.setName(nama);
-        karyawan.setJabatan(jabatan);
+        karyawan.setKontak(kontak);
+        karyawan.setAlamat(alamat);
+        karyawan.setLastEducation(lastEducation);
 
 //         Simpan ke DB (uncomment baris ini untuk mengaktifkan penyimpanan)
          int result = karyawanDao.create(karyawan);
@@ -322,13 +345,17 @@ import net.sf.jasperreports.view.JasperViewer;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          // Ambil nilai input dari form
         String nama = txtNama.getText().trim();
-        String jabatan = txtJabatan.getText().trim();
+        String kontak = txtKontak.getText().trim();
+        String alamat = txtAlamat.getText().trim();
+        String lastEducation = txtLastEducation.getText().trim();
 
         // Set ke model
         KaryawanModel karyawan = new KaryawanModel();
         karyawan.setId(parseInt(this.selectedId)); // ID Karyawan yang akan diupdate
-        karyawan.setName(nama);
-        karyawan.setJabatan(jabatan);
+         karyawan.setName(nama);
+        karyawan.setKontak(kontak);
+        karyawan.setAlamat(alamat);
+        karyawan.setLastEducation(lastEducation);
 
         // Panggil fungsi update di DAO
         int result = karyawanDao.update(karyawan);
@@ -359,7 +386,7 @@ import net.sf.jasperreports.view.JasperViewer;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-            String templateName = "LaporanKaryawanBiznet.jrxml";
+            String templateName = "LaporanKaryawanBIG.jrxml";
             InputStream reportStream = ReportView.class.getResourceAsStream("/resources/reports/" + templateName);
             JasperDesign jd = JRXmlLoader.load(reportStream);
 
@@ -377,6 +404,14 @@ import net.sf.jasperreports.view.JasperViewer;
         } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtKontakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKontakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKontakActionPerformed
+
+    private void txtLastEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastEducationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastEducationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup gender;
@@ -387,13 +422,16 @@ import net.sf.jasperreports.view.JasperViewer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtJabatan;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextField txtKontak;
+    private javax.swing.JTextField txtLastEducation;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }

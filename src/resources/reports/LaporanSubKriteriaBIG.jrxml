@@ -34,8 +34,8 @@
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
 		<queryString language="SQL">
-			<![CDATA[select * from  saw_kinerja_karyawan_biznet.sub_criteria as sc 
-inner join saw_kinerja_karyawan_biznet.criteria as c on sc.id_kreteria = c.id]]>
+			<![CDATA[select * from  profile_matching_karyawan.sub_criteria as sc 
+inner join profile_matching_karyawan.criteria as c on sc.id_kreteria = c.id]]>
 		</queryString>
 		<field name="id" class="java.lang.Integer">
 			<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -80,7 +80,7 @@ inner join saw_kinerja_karyawan_biznet.criteria as c on sc.id_kreteria = c.id]]>
 	</subDataset>
 	<parameter name="PATH" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  saw_kinerja_karyawan_biznet.sub_criteria limit 1]]>
+		<![CDATA[select * from  profile_matching_karyawan.sub_criteria limit 1]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -108,7 +108,7 @@ inner join saw_kinerja_karyawan_biznet.criteria as c on sc.id_kreteria = c.id]]>
 	<pageHeader>
 		<band height="80" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-30" width="595" height="110" forecolor="#FFFCFC" backcolor="#FFFFFF" uuid="c389d6cc-6808-4dde-94d8-1ac1e04921b8"/>
+				<reportElement mode="Opaque" x="-20" y="-30" width="595" height="110" forecolor="#FFFCFC" backcolor="#FFFFFF" uuid="b1552bd7-5437-4d06-af67-9b4b7e128a88"/>
 				<box padding="0">
 					<pen lineColor="#000000"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -117,27 +117,27 @@ inner join saw_kinerja_karyawan_biznet.criteria as c on sc.id_kreteria = c.id]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<staticText>
-					<reportElement x="100" y="21" width="430" height="30" forecolor="#000000" uuid="2ebadc26-ad12-4f16-b341-54d6a940b35c"/>
+					<reportElement x="100" y="21" width="430" height="30" forecolor="#000000" uuid="23fbc710-1939-4354-9cf5-ce09f3a568c8"/>
 					<textElement textAlignment="Center">
 						<font fontName="Times New Roman" size="20" isBold="true"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
-					<text><![CDATA[ PT SUPRA PRIMATAMA NUSANTARA]]></text>
+					<text><![CDATA[BHUMI INTI GUNA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="180" y="51" width="260" height="20" forecolor="#000000" uuid="ff2de9cd-6d93-4a8d-af6a-4af283570503"/>
+					<reportElement x="200" y="51" width="230" height="20" forecolor="#000000" uuid="1cf5dd22-f8fa-4605-bfaf-6b0b54395bfb"/>
 					<textElement>
 						<font fontName="Times New Roman"/>
 					</textElement>
-					<text><![CDATA[Jl. Riverside Golf Club No.1, Bojong Nangka, Kec. Gn. Putri]]></text>
+					<text><![CDATA[Jalan Ampera Raya No.2 , Ragunan, kec. Pasar Minggu]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="220" y="71" width="180" height="20" forecolor="#000000" uuid="c3f6a351-23f6-4074-8aba-d4f92a927f5d"/>
-					<text><![CDATA[Kabupaten Bogor, Jawa Barat 16965]]></text>
+					<reportElement x="210" y="72" width="210" height="20" forecolor="#000000" uuid="77ae5cd9-d2de-4d36-944b-baf7902500f8"/>
+					<text><![CDATA[Kota Jakarta selatan, Daerah Ibukota Jakarta.]]></text>
 				</staticText>
 				<image>
 					<reportElement x="40" y="25" width="50" height="50" uuid="23d5bb3f-e081-4190-9f1d-1a95495589ee"/>
-                                        <imageExpression><![CDATA[$P{PATH}+"logo_PT_Supra_Primatama_Nusantara-200.png"]]></imageExpression>
+                                        <imageExpression><![CDATA[$P{PATH}+"big-200.png"]]></imageExpression>
 				</image>
 			</frame>
 		</band>

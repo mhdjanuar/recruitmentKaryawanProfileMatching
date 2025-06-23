@@ -17,6 +17,7 @@ public class KaryawanModel {
     private String gender;
     private String alamat;
     private String jabatan;
+    private String lastEducation;
 
     /**
      * @return the usia
@@ -129,5 +130,19 @@ public class KaryawanModel {
      */
     public void setJabatan(String jabatan) {
         this.jabatan = jabatan;
+    }
+    
+     /**
+     * @return the lastEducation
+     */
+    public String getLastEducation() {
+        return lastEducation;
+    }
+
+    /**
+     * @param lastEducation the lastEducation to set
+     */
+    public void setLastEducation(String lastEducation) {
+        this.lastEducation = lastEducation;
     }
 }

@@ -43,7 +43,9 @@ public class KaryawanDaoImpl implements KaryawanDao {
                 KaryawanModel listData = new KaryawanModel();
                 listData.setId(resultSet.getInt("id"));
                 listData.setName(resultSet.getString("name"));
-                listData.setJabatan(resultSet.getString("position"));
+                listData.setAlamat(resultSet.getString("address"));
+                listData.setKontak(resultSet.getString("contact_number"));
+                listData.setLastEducation(resultSet.getString("last_education"));
 
                 listDataAll.add(listData);
             }
@@ -60,10 +62,12 @@ public class KaryawanDaoImpl implements KaryawanDao {
     @Override
     public int create(KaryawanModel karyawan) {
         try {
-            query = "INSERT INTO employees(name, position) VALUES (?, ?)";
+            query = "INSERT INTO employees(name, contact_number, address, last_education) VALUES (?, ?, ?, ?)";
             pstmt = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, karyawan.getName());
-            pstmt.setString(2, karyawan.getJabatan());
+            pstmt.setString(2, karyawan.getKontak());
+            pstmt.setString(3, karyawan.getAlamat());
+            pstmt.setString(4, karyawan.getLastEducation());
 
             // Log sebelum insert
             System.out.println("=== Menyimpan Data Karyawan ===");
@@ -108,12 +112,14 @@ public class KaryawanDaoImpl implements KaryawanDao {
         int result = 0;
         try {
             // Query untuk mengupdate data karyawan
-            query = "UPDATE employees SET name = ?, position = ? WHERE id = ?";
+            query = "UPDATE employees SET name = ?, address = ?, contact_number = ?, last_education = ? WHERE id = ?";
 
             pstmt = dbConnection.prepareStatement(query);
             pstmt.setString(1, karyawan.getName());  // Nama karyawan
-            pstmt.setString(2, karyawan.getJabatan());  // Alamat karyawan
-            pstmt.setInt(3, karyawan.getId());  // ID karyawan yang akan diupdate
+            pstmt.setString(2, karyawan.getAlamat());
+            pstmt.setString(3, karyawan.getKontak());
+            pstmt.setString(4, karyawan.getLastEducation());
+            pstmt.setInt(5, karyawan.getId());  // ID karyawan yang akan diupdate
 
             result = pstmt.executeUpdate();  // Eksekusi query update
         } catch (SQLException e) {

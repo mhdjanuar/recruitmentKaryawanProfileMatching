@@ -34,7 +34,7 @@
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
 		<queryString language="SQL">
-			<![CDATA[select * from  saw_kinerja_karyawan_biznet.criteria]]>
+			<![CDATA[select * from  profile_matching_karyawan.criteria]]>
 		</queryString>
 		<field name="id" class="java.lang.Integer">
 			<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -59,7 +59,7 @@
 	</subDataset>
 	<parameter name="PATH" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  saw_kinerja_karyawan_biznet.criteria limit 1]]>
+		<![CDATA[select * from  profile_matching_karyawan.criteria limit 1]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -101,22 +101,22 @@
 						<font fontName="Times New Roman" size="20" isBold="true"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
-					<text><![CDATA[ PT SUPRA PRIMATAMA NUSANTARA]]></text>
+					<text><![CDATA[BHUMI INTI GUNA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="180" y="51" width="260" height="20" forecolor="#000000" uuid="70e0952c-4e2a-4480-8b9a-9ec8599d5ff4"/>
+					<reportElement x="200" y="51" width="230" height="20" forecolor="#000000" uuid="70e0952c-4e2a-4480-8b9a-9ec8599d5ff4"/>
 					<textElement>
 						<font fontName="Times New Roman"/>
 					</textElement>
-					<text><![CDATA[Jl. Riverside Golf Club No.1, Bojong Nangka, Kec. Gn. Putri]]></text>
+					<text><![CDATA[Jalan Ampera Raya No.2 , Ragunan, kec. Pasar Minggu]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="220" y="71" width="180" height="20" forecolor="#000000" uuid="df60e13a-fea5-4d3a-93e4-14ef6a2a6c85"/>
-					<text><![CDATA[Kabupaten Bogor, Jawa Barat 16965]]></text>
+					<reportElement x="210" y="72" width="210" height="20" forecolor="#000000" uuid="df60e13a-fea5-4d3a-93e4-14ef6a2a6c85"/>
+					<text><![CDATA[Kota Jakarta selatan, Daerah Ibukota Jakarta.]]></text>
 				</staticText>
 				<image>
 					<reportElement x="40" y="25" width="50" height="50" uuid="23d5bb3f-e081-4190-9f1d-1a95495589ee"/>
-                                        <imageExpression><![CDATA[$P{PATH}+"logo_PT_Supra_Primatama_Nusantara-200.png"]]></imageExpression>
+                                        <imageExpression><![CDATA[$P{PATH}+"big-200.png"]]></imageExpression>
 				</image>
 			</frame>
 		</band>
@@ -255,7 +255,7 @@
 				<textElement textAlignment="Right">
 					<paragraph rightIndent="10"/>
 				</textElement>
-				<text><![CDATA[ Sri Mulyati]]></text>
+				<text><![CDATA[ Noviska]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

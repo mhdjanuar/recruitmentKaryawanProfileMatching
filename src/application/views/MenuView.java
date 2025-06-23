@@ -82,8 +82,8 @@ public class MenuView extends javax.swing.JFrame {
        Home.setLayout(new GridBagLayout()); // agar isi panel di tengah otomatis
 
         JLabel homeLabel = new JLabel("Selamat Datang di Aplikasi");
-        JLabel homeLabel2 = new JLabel("Sistem Pendukung Keputusan Penilaian Kinerja Karyawan");
-        JLabel homeLabel3 = new JLabel("PT. Supra Primatama");
+        JLabel homeLabel2 = new JLabel("Penerapan metode profile matching dalam sistem pendukung keputusan");
+        JLabel homeLabel3 = new JLabel("rekrutmen karyawan di PT Bumi Intiguna");
 
         homeLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         homeLabel2.setFont(new Font("SansSerif", Font.BOLD, 24)); // bisa pakai font lain
@@ -107,14 +107,14 @@ public class MenuView extends javax.swing.JFrame {
         // Panel utama
         jPanel1.setLayout(new BorderLayout()); // penting supaya anak komponen fleksibel ukurannya
 
-        Sidebar.setBackground(Color.decode("#bf7146"));
+        Sidebar.setBackground(Color.decode("#79f299"));
         Sidebar.setPreferredSize(new Dimension(250, 0)); // 200px lebar, tinggi otomatis
         jPanel1.add(Sidebar, BorderLayout.WEST);
         
         jPanel2.setLayout(new BorderLayout());
         
         Header.setLayout(new BorderLayout());
-        Header.setBackground(Color.decode("#a35243"));
+        Header.setBackground(Color.decode("#2d9f57"));
         Header.setPreferredSize(new Dimension(0, 120));
         Header.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 40)); // Padding: atas, kiri, bawah, kanan
 
@@ -123,22 +123,22 @@ public class MenuView extends javax.swing.JFrame {
         userInfoPanel.setLayout(new BoxLayout(userInfoPanel, BoxLayout.Y_AXIS));
         userInfoPanel.setOpaque(false); // Biar background-nya transparan
 
-        // Label 1: Selamat datang
-        JLabel welcomeLabel = new JLabel("Selamat datang, Admin");
-        welcomeLabel.setForeground(Color.WHITE);
-        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
-        welcomeLabel.setAlignmentX(Component.RIGHT_ALIGNMENT); // Penting buat posisi kanan
-
-        // Label 2: Role
-        JLabel roleLabel = new JLabel("Role Kamu adalah, Admin");
-        roleLabel.setForeground(Color.WHITE);
-        roleLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        roleLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-        // Tambahkan ke panel userInfo
-        userInfoPanel.add(welcomeLabel);
-        userInfoPanel.add(Box.createVerticalStrut(5)); // Jarak antar label
-        userInfoPanel.add(roleLabel);
+//        // Label 1: Selamat datang
+//        JLabel welcomeLabel = new JLabel("Selamat datang");
+//        welcomeLabel.setForeground(Color.WHITE);
+//        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+//        welcomeLabel.setAlignmentX(Component.RIGHT_ALIGNMENT); // Penting buat posisi kanan
+//
+//        // Label 2: Role
+//        JLabel roleLabel = new JLabel("Role Kamu adalah, Admin");
+//        roleLabel.setForeground(Color.WHITE);
+//        roleLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+//        roleLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+//
+//        // Tambahkan ke panel userInfo
+//        userInfoPanel.add(welcomeLabel);
+//        userInfoPanel.add(Box.createVerticalStrut(5)); // Jarak antar label
+//        userInfoPanel.add(roleLabel);
 
         // Tambahkan ke Header di kanan
         Header.add(userInfoPanel, BorderLayout.EAST);
@@ -251,7 +251,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/loremipsum-resize.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/big-200.png"))); // NOI18N
 
         perhitunganSPK.setBackground(new java.awt.Color(0, 0, 0));
         perhitunganSPK.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -304,21 +304,21 @@ public class MenuView extends javax.swing.JFrame {
         SidebarLayout.setHorizontalGroup(
             SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(SidebarLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(perhitunganSPK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(profil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(alternatif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(perhitungan, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
             .addComponent(listData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(SidebarLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SidebarLayout.setVerticalGroup(
             SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SidebarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(listData)
                 .addGap(18, 18, 18)
