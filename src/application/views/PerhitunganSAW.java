@@ -382,6 +382,8 @@ public class PerhitunganSAW extends javax.swing.JPanel {
             // Bangun konten HTML untuk parameter
             StringBuilder htmlContent = new StringBuilder();
             htmlContent.append("<div style='font-family: Arial, sans-serif; font-size: 12px;'>");
+          
+            
             htmlContent.append("<ol style='padding-left: 15px;'>");
 
             for (SkorModel skor : rangking) {
@@ -397,12 +399,10 @@ public class PerhitunganSAW extends javax.swing.JPanel {
 
             htmlContent.append("</ol>");
             htmlContent.append("</div>");
-
-
-            
+ 
             
             // Load template Jasper
-            String templateName = "ReportRangkingBIG.jrxml";
+            String templateName = "ReportLaporanRangking.jrxml";
             InputStream reportStream = ReportView.class.getResourceAsStream("/resources/reports/" + templateName);
             JasperDesign jd = JRXmlLoader.load(reportStream);
 
@@ -419,7 +419,10 @@ public class PerhitunganSAW extends javax.swing.JPanel {
 
             // Generate dan tampilkan laporan
             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, dbConnection);
-            JasperViewer.viewReport(jp, false);
+            // Atur zoom 75% saat viewer dibuka
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setZoomRatio(0.75f);
+            viewer.setVisible(true);
 
         } catch (JRException ex) {
             Logger.getLogger(ReportView.class.getName()).log(Level.SEVERE, null, ex);

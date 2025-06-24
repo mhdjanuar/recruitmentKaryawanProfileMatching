@@ -83,7 +83,7 @@ public class MenuView extends javax.swing.JFrame {
 
         JLabel homeLabel = new JLabel("Selamat Datang di Aplikasi");
         JLabel homeLabel2 = new JLabel("Penerapan metode profile matching dalam sistem pendukung keputusan");
-        JLabel homeLabel3 = new JLabel("rekrutmen karyawan di PT Bumi Intiguna");
+        JLabel homeLabel3 = new JLabel("rekrutmen karyawan di PT Bhumi Inti Guna");
 
         homeLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         homeLabel2.setFont(new Font("SansSerif", Font.BOLD, 24)); // bisa pakai font lain
