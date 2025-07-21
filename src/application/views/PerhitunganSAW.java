@@ -158,6 +158,21 @@ public class PerhitunganSAW extends javax.swing.JPanel {
             "Skor Akhir = (CF × 60%) + (SF × 40%)" +
             "</html>";
         jLabelRumus.setText(rumus);
+        
+        ProfileMatchingLogic pm = new ProfileMatchingLogic();
+        
+        List<GapModel> gapList = pm.hitungGap(
+                alternatifDao.findNilaiAktual(),
+                alternatifDao.findNilaiIdeal()
+        );
+
+        List<SkorModel> skorList = pm.hitungSkorAkhir(gapList);
+        List<SkorModel> rangking = pm.rangkingAkhir(skorList);
+
+        // Simpan hasil ranking ke database
+        for (SkorModel skor : rangking) {
+            rangkingDao.saveAllSkorAkhirToDatabase(rangking); // method untuk insert ke DB
+        }
 
         
         getDataNilaiAktual();
@@ -368,62 +383,19 @@ public class PerhitunganSAW extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            // Inisialisasi logic dan ambil data rangking
-            ProfileMatchingLogic pm = new ProfileMatchingLogic();
-
-            List<GapModel> gapList = pm.hitungGap(
-                    alternatifDao.findNilaiAktual(),
-                    alternatifDao.findNilaiIdeal()
-            );
-
-            List<SkorModel> skorList = pm.hitungSkorAkhir(gapList);
-            List<SkorModel> rangking = pm.rangkingAkhir(skorList);
-
-            // Bangun konten HTML untuk parameter
-            StringBuilder htmlContent = new StringBuilder();
-            htmlContent.append("<div style='font-family: Arial, sans-serif; font-size: 12px;'>");
-          
-            
-            htmlContent.append("<ol style='padding-left: 15px;'>");
-
-            for (SkorModel skor : rangking) {
-                htmlContent.append("<li style='margin-bottom: 5px;'>");
-                htmlContent.append("<strong style='color: #2E86C1;'>")
-                           .append(skor.getNamaEmployee())
-                           .append("</strong>");
-                htmlContent.append(" - <span style='color: #28B463;'>Skor: ")
-                           .append(String.format("%.2f", skor.getSkorAkhir()))
-                           .append("</span>");
-                htmlContent.append("</li>");
-            }
-
-            htmlContent.append("</ol>");
-            htmlContent.append("</div>");
- 
-            
-            // Load template Jasper
-            String templateName = "ReportLaporanRangking.jrxml";
+            String templateName = "LaporanRangkingBIG.jrxml";
             InputStream reportStream = ReportView.class.getResourceAsStream("/resources/reports/" + templateName);
             JasperDesign jd = JRXmlLoader.load(reportStream);
 
-            // Koneksi database
             Connection dbConnection = DatabaseUtil.getInstance().getConnection();
 
-            // Kompilasi laporan
             JasperReport jr = JasperCompileManager.compileReport(jd);
 
-            // Kirim parameter ke Jasper
-            HashMap<String, Object> parameter = new HashMap<>();
-            parameter.put("PATH", "src/resources/images/");
-            parameter.put("Parameter1", htmlContent.toString()); // ini isi ranking-nya
-
-            // Generate dan tampilkan laporan
-            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, dbConnection);
-            // Atur zoom 75% saat viewer dibuka
-            JasperViewer viewer = new JasperViewer(jp, false);
-            viewer.setZoomRatio(0.75f);
-            viewer.setVisible(true);
-
+            HashMap parameter = new HashMap();
+            parameter.put("PATH","src/resources/images/");
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr,parameter, dbConnection);
+            JasperViewer.viewReport(jp, false);
         } catch (JRException ex) {
             Logger.getLogger(ReportView.class.getName()).log(Level.SEVERE, null, ex);
         } 

@@ -2,6 +2,7 @@ package application.daoimpl;
 
 import application.dao.RangkingDao;
 import application.models.RangkingModel;
+import application.models.SkorModel;
 import application.utils.DatabaseUtil;
 
 import java.sql.*;
@@ -18,7 +19,7 @@ public class RangkingDaoImpl implements RangkingDao {
         dbConnection = DatabaseUtil.getInstance().getConnection();
     }
 
-     @Override
+    @Override
     public List<RangkingModel> findRangking() {
         List<RangkingModel> rangkingList = new ArrayList<>();
 
@@ -82,6 +83,36 @@ public class RangkingDaoImpl implements RangkingDao {
 
         return rangkingList;
     }
+    
+    @Override
+    public void saveAllSkorAkhirToDatabase(List<SkorModel> data) {
+        try {
+            // Bersihkan data lama (opsional)
+            PreparedStatement clearStmt = dbConnection.prepareStatement("DELETE FROM hasil_rangking");
+            clearStmt.executeUpdate();
+            clearStmt.close();
+
+            // Siapkan query insert
+            String insertQuery = "INSERT INTO hasil_rangking (id_employee, nama_employee, cf, sf, skor_akhir) VALUES (?, ?, ?, ?, ?)";
+            pstmt = dbConnection.prepareStatement(insertQuery);
+
+            // Simpan semua skor
+            for (SkorModel skor : data) {
+                pstmt.setInt(1, skor.getIdEmployee());
+                pstmt.setString(2, skor.getNamaEmployee());
+                pstmt.setDouble(3, skor.getCf());
+                pstmt.setDouble(4, skor.getSf());
+                pstmt.setDouble(5, skor.getSkorAkhir());
+                pstmt.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            closeStatement();
+        }
+    }
+
 
     private void closeStatement() {
         try {

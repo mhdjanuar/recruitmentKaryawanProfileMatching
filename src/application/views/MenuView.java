@@ -491,7 +491,8 @@ public class MenuView extends javax.swing.JFrame {
 
         if (result == JOptionPane.YES_OPTION) {
             DatabaseUtil.getInstance().closeConnection(); // Tutup koneksi DB (kalau ada)
-            System.exit(0); // Keluar dari aplikasi
+            this.dispose(); // Tutup jendela MenuView
+            new LoginView().start();
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 

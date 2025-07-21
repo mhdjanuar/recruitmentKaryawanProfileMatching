@@ -184,10 +184,22 @@ public class AlternatifDaoImpl implements AlternatifDao {
 
     @Override
     public int deleteBulkByKaryawan(int idPeserta) {
-        String query = "DELETE FROM alternatif WHERE id_employee = ?";
+        String query =
+            "DELETE FROM alternatif " +
+            "WHERE id_employee = ? " +
+            "AND id NOT IN ( " +
+            "    SELECT id FROM ( " +
+            "        SELECT id " +
+            "        FROM alternatif " +
+            "        WHERE id_employee = ? " +
+            "        ORDER BY id DESC " +
+            "        LIMIT 5 " +
+            "    ) AS recent " +
+            ")";
 
         try (PreparedStatement pstmt = dbConnection.prepareStatement(query)) {
             pstmt.setInt(1, idPeserta);
+            pstmt.setInt(2, idPeserta);
             return pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -196,8 +208,8 @@ public class AlternatifDaoImpl implements AlternatifDao {
         } finally {
             closeStatement();
         }
-
     }
+
 
 
     @Override

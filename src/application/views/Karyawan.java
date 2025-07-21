@@ -57,7 +57,7 @@ import net.sf.jasperreports.view.JasperViewer;
         public void getAllData() {
             // Ambil data karyawan dari database
             List<KaryawanModel> karyawanList = karyawanDao.findAll();
-
+           
             // Set Model untuk JTable
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(new Object[]{
@@ -322,7 +322,6 @@ import net.sf.jasperreports.view.JasperViewer;
 
         // Log input yang diterima
         System.out.println("Nama: " + nama);
-       
 
         // Set ke model
         KaryawanModel karyawan = new KaryawanModel();

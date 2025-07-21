@@ -5,6 +5,7 @@
 package application.dao;
 
 import application.models.RangkingModel;
+import application.models.SkorModel;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface RangkingDao {
     List<RangkingModel> findRangking();
+    public void saveAllSkorAkhirToDatabase(List<SkorModel> data);
 }

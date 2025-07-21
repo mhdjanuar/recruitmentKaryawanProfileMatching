@@ -58,7 +58,6 @@ public class KaryawanDaoImpl implements KaryawanDao {
         return listDataAll;
     }
 
-
     @Override
     public int create(KaryawanModel karyawan) {
         try {
