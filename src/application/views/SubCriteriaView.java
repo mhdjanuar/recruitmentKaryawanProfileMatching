@@ -40,18 +40,29 @@ public class SubCriteriaView extends javax.swing.JPanel {
     
     public void getAllData() {
         List<SubCriteriaModel> subCriteriaList = subCriteriaDao.findAll();
-        
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Id", "Kriteria", "Deksripsi", "Bobot"}); // Adjust column names as needed
 
-        // Populate the model with data from spareparts
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Id", "No", "Kriteria", "Deskripsi", "Bobot"});
+
+        int no = 1;
         for (SubCriteriaModel subCriteria : subCriteriaList) {
-            model.addRow(new Object[]{subCriteria.getId(), subCriteria.getNameCriteria(), subCriteria.getDeskripsi(), subCriteria.getBobot()}); // Add more attributes as needed
+            model.addRow(new Object[]{
+                subCriteria.getId(),           // Disembunyikan
+                no++,                          // Nomor urut
+                subCriteria.getNameCriteria(),
+                subCriteria.getDeskripsi(),
+                subCriteria.getBobot()
+            });
         }
-        
-        // Set the table model to jTable1
+
         jTable1.setModel(model);
+
+        // Sembunyikan kolom ID (kolom ke-0)
+        jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(0).setWidth(0);
     }
+
     
     public void getCriteriaComboBox() {
         List<CriteriaModel> criteriaList = criteriaDao.findAll();
@@ -91,9 +102,9 @@ public class SubCriteriaView extends javax.swing.JPanel {
                 int selectedRow = jTable1.getSelectedRow();
                 if (selectedRow != -1) {
                     // Ambil nilai dari kolom tabel
-                    String deskripsi = jTable1.getValueAt(selectedRow, 2).toString();
-                    String jumlahBobot = jTable1.getValueAt(selectedRow, 3).toString();
-                    String namaKriteria = jTable1.getValueAt(selectedRow, 1).toString();
+                    String deskripsi = jTable1.getValueAt(selectedRow, 3).toString();
+                    String jumlahBobot = jTable1.getValueAt(selectedRow, 4).toString();
+                    String namaKriteria = jTable1.getValueAt(selectedRow, 2).toString();
 
                     // Set ke textfield
                     jTextFieldDeskripsi.setText(deskripsi);

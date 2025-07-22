@@ -57,17 +57,18 @@ import net.sf.jasperreports.view.JasperViewer;
         public void getAllData() {
             // Ambil data karyawan dari database
             List<KaryawanModel> karyawanList = karyawanDao.findAll();
-           
+
             // Set Model untuk JTable
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(new Object[]{
-                "ID Karyawan", "Nama", "Kontak", "Alamat", "Pendidikan Terakhir"
+                "ID Karyawan", "No", "Nama", "Kontak", "Alamat", "Pendidikan Terakhir"
             });
 
-            // Masukkan data karyawan ke dalam model JTable
+            int no = 1;
             for (KaryawanModel karyawan : karyawanList) {
                 model.addRow(new Object[]{
-                    karyawan.getId(),
+                    karyawan.getId(),   // Tetap masukkan ID Karyawan ke model
+                    no++,               // Nomor urut
                     karyawan.getName(),
                     karyawan.getKontak(),
                     karyawan.getAlamat(),
@@ -77,7 +78,13 @@ import net.sf.jasperreports.view.JasperViewer;
 
             // Set model ke JTable
             jTable1.setModel(model);
+
+            // Sembunyikan kolom ID Karyawan (kolom ke-0)
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(0).setWidth(0);
         }
+
 
     
     /**
@@ -97,10 +104,10 @@ import net.sf.jasperreports.view.JasperViewer;
                 int selectedRow = jTable1.getSelectedRow();
 
                 // Ambil data dari baris yang diklik
-                String nama = jTable1.getValueAt(selectedRow, 1).toString();
-                String kontak = jTable1.getValueAt(selectedRow, 2).toString();
-                String alamat = jTable1.getValueAt(selectedRow, 3).toString();
-                String lastEducation = jTable1.getValueAt(selectedRow, 4).toString();
+                String nama = jTable1.getValueAt(selectedRow, 2).toString();
+                String kontak = jTable1.getValueAt(selectedRow, 3).toString();
+                String alamat = jTable1.getValueAt(selectedRow, 4).toString();
+                String lastEducation = jTable1.getValueAt(selectedRow, 5).toString();
                 
                 this.selectedId = jTable1.getValueAt(selectedRow, 0).toString();
 
