@@ -37,7 +37,7 @@
 			<![CDATA[SELECT e.name as nama_karyawan, c.nama as nama_kriteria, sc.deskripsi, sc.jumlah_bobot FROM profile_matching_karyawan.alternatif   as a
 INNER JOIN profile_matching_karyawan.employees as e ON a.id_employee = e.id
 INNER JOIN profile_matching_karyawan.sub_criteria as sc ON a.id_sub_kreteria = sc.id
-INNER JOIN profile_matching_karyawan.criteria as c ON sc.id_kreteria = c.id]]>
+INNER JOIN profile_matching_karyawan.criteria as c ON sc.id_kreteria = c.id ORDER BY a.created_at DESC, e.name ASC]]>
 		</queryString>
 		<field name="nama_karyawan" class="java.lang.String">
 			<property name="com.jaspersoft.studio.field.name" value="name"/>

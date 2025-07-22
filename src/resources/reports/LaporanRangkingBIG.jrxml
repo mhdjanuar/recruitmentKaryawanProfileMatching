@@ -222,7 +222,7 @@ FROM
 								<textElement textAlignment="Center">
 									<paragraph spacingBefore="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#0.000").format($F{skor_akhir})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#0.00").format($F{skor_akhir})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

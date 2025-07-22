@@ -41,11 +41,12 @@ public class AlternatifDaoImpl implements AlternatifDao {
         
         try {
             query = "SELECT p.name, c.id AS id_kriteria, c.nama AS nama_kriteria, " +
-                "sc.jumlah_bobot AS bobot_alternatif " +
-                "FROM alternatif AS a " +
-                "INNER JOIN employees AS p ON a.id_employee = p.id " +
-                "INNER JOIN sub_criteria AS sc ON a.id_sub_kreteria = sc.id " +
-                "INNER JOIN criteria AS c ON sc.id_kreteria = c.id";
+                    "sc.jumlah_bobot AS bobot_alternatif " +
+                    "FROM alternatif AS a " +
+                    "INNER JOIN employees AS p ON a.id_employee = p.id " +
+                    "INNER JOIN sub_criteria AS sc ON a.id_sub_kreteria = sc.id " +
+                    "INNER JOIN criteria AS c ON sc.id_kreteria = c.id " +
+                    "ORDER BY a.created_at DESC, p.name ASC";
             
             pstmt = dbConnection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
@@ -181,25 +182,59 @@ public class AlternatifDaoImpl implements AlternatifDao {
 
         return normalisasiList;
     }
+    
+    public boolean hasDuplicateAlternatif() {
+      String query = "SELECT p.name, c.nama AS nama_kriteria, COUNT(*) as total " +
+                     "FROM alternatif AS a " +
+                     "INNER JOIN employees AS p ON a.id_employee = p.id " +
+                     "INNER JOIN sub_criteria AS sc ON a.id_sub_kreteria = sc.id " +
+                     "INNER JOIN criteria AS c ON sc.id_kreteria = c.id " +
+                     "GROUP BY p.name, c.nama " +
+                     "HAVING COUNT(*) > 1";
+
+      try {
+          pstmt = dbConnection.prepareStatement(query);
+          resultSet = pstmt.executeQuery();
+
+          // Return true jika ada duplikat, false jika tidak ada
+          return resultSet.next();
+
+      } catch (SQLException e) {
+          throw new RuntimeException(e);
+      } finally {
+          closeStatement();
+      }
+    }
 
     @Override
     public int deleteBulkByKaryawan(int idPeserta) {
-        String query =
-            "DELETE FROM alternatif " +
-            "WHERE id_employee = ? " +
-            "AND id NOT IN ( " +
-            "    SELECT id FROM ( " +
-            "        SELECT id " +
-            "        FROM alternatif " +
-            "        WHERE id_employee = ? " +
-            "        ORDER BY id DESC " +
-            "        LIMIT 5 " +
-            "    ) AS recent " +
-            ")";
+        String query;
+
+        if (hasDuplicateAlternatif()) {
+            // Simpan 5 data terbaru, hapus sisanya
+            query = "DELETE FROM alternatif " +
+                    "WHERE id_employee = ? " +
+                    "AND id NOT IN ( " +
+                    "    SELECT id FROM ( " +
+                    "        SELECT id " +
+                    "        FROM alternatif " +
+                    "        WHERE id_employee = ? " +
+                    "        ORDER BY id DESC " +
+                    "        LIMIT 5 " +
+                    "    ) AS recent " +
+                    ")";
+        } else {
+            // Hapus semua data milik karyawan tersebut
+            query = "DELETE FROM alternatif WHERE id_employee = ?";
+        }
 
         try (PreparedStatement pstmt = dbConnection.prepareStatement(query)) {
             pstmt.setInt(1, idPeserta);
-            pstmt.setInt(2, idPeserta);
+
+            if (hasDuplicateAlternatif()) {
+                pstmt.setInt(2, idPeserta); // Hanya dibutuhkan jika pakai query recent
+            }
+
             return pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -209,6 +244,7 @@ public class AlternatifDaoImpl implements AlternatifDao {
             closeStatement();
         }
     }
+
 
 
 
@@ -285,6 +321,7 @@ public class AlternatifDaoImpl implements AlternatifDao {
 
         return list;
     }
+
 
 
 }
