@@ -157,7 +157,7 @@ FROM
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Laporan Karyawan Terbaik]]></text>
+				<text><![CDATA[Laporan Rangking Calon Karyawan]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
